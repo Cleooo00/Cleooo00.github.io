@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>前端部分基础知识 | CleFke&#39;Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  
+  <meta name="description" content="doctype html的作用 它是html5标准网页声明,告诉浏览器用最新的 HTML5标准来解析渲染页面；如果不写，浏览器就会进入混杂模式。而混杂模式指的是浏览器用自己的方式解析代码，页面会以一种兼容的方式来显示。混杂模式一般会模拟老站点的行为以防止老站点无法工作。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端部分基础知识">
+<meta property="og:url" content="http://haoyuliugh.github.io/2019/09/02/前端部分基础知识/index.html">
+<meta property="og:site_name" content="CleFke&#39;Blog">
+<meta property="og:description" content="doctype html的作用 它是html5标准网页声明,告诉浏览器用最新的 HTML5标准来解析渲染页面；如果不写，浏览器就会进入混杂模式。而混杂模式指的是浏览器用自己的方式解析代码，页面会以一种兼容的方式来显示。混杂模式一般会模拟老站点的行为以防止老站点无法工作。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-02T13:13:02.993Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="前端部分基础知识">
+<meta name="twitter:description" content="doctype html的作用 它是html5标准网页声明,告诉浏览器用最新的 HTML5标准来解析渲染页面；如果不写，浏览器就会进入混杂模式。而混杂模式指的是浏览器用自己的方式解析代码，页面会以一种兼容的方式来显示。混杂模式一般会模拟老站点的行为以防止老站点无法工作。">
+  
+    <link rel="alternate" href="/atom.xml" title="CleFke&#39;Blog" type="application/atom+xml">
+  
+
+  
+
+  <link rel="icon" href="/css/images/mylogo.jpg">
+  <link rel="apple-touch-icon" href="/css/images/mylogo.jpg">
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Montserrat:700" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic" rel="stylesheet" type="text/css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <style type="text/css">
+    @font-face{font-family:futura-pt; src:url("css/fonts/FuturaPTBold.otf") format("woff");font-weight:500;font-style:normal;}
+    @font-face{font-family:futura-pt-light; src:url("css/fonts/FuturaPTBook.otf") format("woff");font-weight:lighter;font-style:normal;}
+    @font-face{font-family:futura-pt-italic; src:url("css/fonts/FuturaPTBookOblique.otf") format("woff");font-weight:400;font-style:italic;}
+}
+
+  </style>
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/jquery-3.1.1.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.css">
+
+  
+    <link rel="stylesheet" href="/css/dialog.css">
+  
+
+  
+
+  
+    <link rel="stylesheet" href="/css/header-post.css">
+  
+
+  
+  
+  
+
+</head>
+</html>
+
+
+  <body data-spy="scroll" data-target="#toc" data-offset="50">
+
+
+  
+  <div id="container">
+    <div id="wrap">
+      
+        <header>
+
+    <div id="allheader" class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="navbar-inner">
+          
+          <div class="container"> 
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+
+            
+              <a class="brand" style="
+                 margin-top: 0px;"  
+                href="#" data-toggle="modal" data-target="#myModal" >
+                  <img width="124px" height="124px" alt="Hike News" src="/css/images/mylogo.jpg">
+              </a>
+            
+            
+            <div class="navbar-collapse collapse">
+              <ul class="hnav navbar-nav">
+                
+                  <li> <a class="main-nav-link" href="/">Home</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/archives">Archives</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/categories">Categories</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/tags">Tags</a> </li>
+                
+                  <li> <a class="main-nav-link" href="/about">About</a> </li>
+                
+                  <li><div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div></li>
+            </div>
+          </div>
+                
+      </div>
+    </div>
+
+</header>
+
+
+
+      
+            
+      <div id="content" class="outer">
+        
+          <section id="main" style="float:none;"><article id="post-前端部分基础知识" style="width: 75%; float:left;" class="article article-type-post" itemscope itemprop="blogPost" >
+  <div id="articleInner" class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="thumb" class="article-title" itemprop="name">
+      前端部分基础知识
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      
+	<a href="/2019/09/02/前端部分基础知识/" class="article-date">
+	  <time datetime="2019-09-02T13:07:34.000Z" itemprop="datePublished">2019-09-02</time>
+	</a>
+
+      
+      
+	<a class="article-views">
+	<span id="busuanzi_container_page_pv">
+		PV:<span id="busuanzi_value_page_pv"></span>
+	</span>
+	</a>
+
+      
+
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="doctype-html的作用"><a href="#doctype-html的作用" class="headerlink" title="doctype html的作用"></a>doctype html的作用</h4><blockquote>
+<p>它是html5标准网页声明,告诉浏览器用最新的 HTML5标准来解析渲染页面；如果不写，浏览器就会进入混杂模式。而混杂模式指的是浏览器用自己的方式解析代码，页面会以一种兼容的方式来显示。混杂模式一般会模拟老站点的行为以防止老站点无法工作。</p>
+</blockquote>
+<a id="more"></a>
+
+<h4 id="常见的meta标签的含义"><a href="#常见的meta标签的含义" class="headerlink" title="常见的meta标签的含义"></a>常见的meta标签的含义</h4><blockquote>
+<ul>
+<li><p>指定所用的字符集</p>
+<p><code>&lt;meta charset=&quot;utf-8&quot;&gt;</code></p>
+</li>
+<li><p>向搜索引擎说明网页的搜索关键词</p>
+<p><code>&lt;meta name=&quot;keywords&quot; content=&quot;啦啦啦&quot;&gt;</code></p>
+</li>
+<li><p>向搜索引擎说明站点的主要内容</p>
+<p><code>&lt;meta name=&quot;description&quot; content=&quot;啦啦啦&quot;&gt;</code></p>
+</li>
+<li><p>向搜索引擎说明站点的作者</p>
+<p><code>&lt;meta name=&quot;author&quot; content=&quot;CleFke*^▽^*&quot;&gt;</code></p>
+</li>
+<li><p>浏览器的内核控制</p>
+<p><code>&lt;meta name=&quot;renderer&quot; content=&quot;webkit|ie-comp|ie-stand&quot;&gt;</code></p>
+</li>
+</ul>
+</blockquote>
+<h4 id="常见的浏览器的内核"><a href="#常见的浏览器的内核" class="headerlink" title="常见的浏览器的内核"></a>常见的浏览器的内核</h4><blockquote>
+<ul>
+<li>普通的<em>IE浏览器<em>使用的是</em>Trident</em></li>
+<li><em>Firefox<em>使用的是</em>Gecko</em></li>
+<li><em>opera<em>使用的是</em>Presto<em>，以及后面的</em>Blink</em></li>
+<li><em>Safari<em>以及</em>Chrome<em>使用的是</em>WebKit</em></li>
+</ul>
+</blockquote>
+<h4 id="常见的标签以及含义"><a href="#常见的标签以及含义" class="headerlink" title="常见的标签以及含义"></a>常见的标签以及含义</h4><table>
+<thead>
+<tr>
+<th align="center">标签</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><code>&lt;html&gt;</code></td>
+<td align="center">HTML页面根元素</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;head&gt;</code></td>
+<td align="center">文档的头部</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;meta&gt;</code></td>
+<td align="center">为机器提供元数据，告诉机器如何解析</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;title&gt;</code></td>
+<td align="center">文档的标题</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;body&gt;</code></td>
+<td align="center">文档的内容</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;div&gt;</code></td>
+<td align="center">块级元素，容器</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;h1&gt;</code></td>
+<td align="center">定义一级标题，类似还有<code>&lt;h2&gt;</code>等</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;p&gt;</code></td>
+<td align="center">定义一个段落</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;a&gt;</code></td>
+<td align="center">定义一个链接，格式为<code>&lt;a href=&quot;网址&quot;&gt;</code></td>
+</tr>
+<tr>
+<td align="center"><code>&lt;span&gt;</code></td>
+<td align="center">内联元素，可用作文本的容器</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;u&gt;</code></td>
+<td align="center">下划线标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;em&gt;</code></td>
+<td align="center">强调标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;strong&gt;</code></td>
+<td align="center">加重标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;table&gt;</code></td>
+<td align="center">表格标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;tr&gt;</code></td>
+<td align="center">表格中的行</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;td&gt;</code></td>
+<td align="center">表格中的单元格</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;th&gt;</code></td>
+<td align="center">表格的表头</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;tbody&gt;</code></td>
+<td align="center">表格的主体</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;tfoot&gt;</code></td>
+<td align="center">表格的页脚</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;ol&gt;</code></td>
+<td align="center">有序列表标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;ul&gt;</code></td>
+<td align="center">无序列表标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;li&gt;</code></td>
+<td align="center">定义列表项目</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;img&gt;</code></td>
+<td align="center">插入图片，格式为<code>&lt;img src=&quot;图片地址&quot;&gt;</code></td>
+</tr>
+<tr>
+<td align="center"><code>&lt;br&gt;</code></td>
+<td align="center">换行标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;input&gt;</code></td>
+<td align="center">输入控件标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;i&gt;</code></td>
+<td align="center">斜体字标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;hr&gt;</code></td>
+<td align="center">水平线标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;iframe&gt;</code></td>
+<td align="center">定义内联框架</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;cite&gt;</code></td>
+<td align="center">定义作品标题</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;button&gt;</code></td>
+<td align="center">按钮标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;b&gt;</code></td>
+<td align="center">粗体字标签</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;form&gt;</code></td>
+<td align="center">定义供用户输入的表单</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;caption&gt;</code></td>
+<td align="center">定义表标题</td>
+</tr>
+<tr>
+<td align="center"><code>&lt;footer&gt;</code></td>
+<td align="center">定义文档页脚</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      
+      
+      <div>
+        <ul class="post-copyright">
+          <li class="post-copyright-author">
+          <strong>Post author:  </strong>CleFke</a>
+          </li>
+          <li class="post-copyright-link">
+          <strong>Post link:  </strong>
+          <a href="/2019/09/02/前端部分基础知识/" target="_blank" title="前端部分基础知识">http://haoyuliugh.github.io/2019/09/02/前端部分基础知识/</a>
+          </li>
+          <li class="post-copyright-license">
+            <strong>Copyright Notice:   </strong>
+            All articles in this blog are licensed under <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">CC BY-NC-ND 4.0</a>
+            unless stating additionally.
+          </li>
+         
+        </ul>
+<div>
+
+      
+      
+        
+	<div id="comment">
+		<!-- 来必力City版安装代码 -->
+		<div id="lv-container" data-id="city" data-uid="MTAyMC8yOTQ4MS82MDQ5">
+		<script type="text/javascript">
+		   (function(d, s) {
+		       var j, e = d.getElementsByTagName(s)[0];
+
+		       if (typeof LivereTower === 'function') { return; }
+
+		       j = d.createElement(s);
+		       j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+		       j.async = true;
+
+		       e.parentNode.insertBefore(j, e);
+		   })(document, 'script');
+		</script>
+		<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+		</div>
+		<!-- City版安装代码已完成 -->
+	</div>
+
+
+
+      
+      
+        
+      
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/21/围棋算法/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          围棋算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/08/31/一些莫名其妙的东西/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">一些莫名其妙的东西</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+<!-- Table of Contents -->
+
+  <aside id="toc-sidebar">
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">Contents</strong>
+    
+        <ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#doctype-html的作用"><span class="nav-number">1.</span> <span class="nav-text">doctype html的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的meta标签的含义"><span class="nav-number">2.</span> <span class="nav-text">常见的meta标签的含义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的浏览器的内核"><span class="nav-number">3.</span> <span class="nav-text">常见的浏览器的内核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的标签以及含义"><span class="nav-number">4.</span> <span class="nav-text">常见的标签以及含义</span></a></li></ol>
+    
+    </div>
+  </aside>
+
+</section>
+        
+      </div>
+      
+      <footer id="footer">
+  
+
+  <div class="container">
+      	<div class="row">
+	      <p> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/iTimeTraveler/hexo-theme-hiker" target="_blank">Hexo-theme-hiker</a> </p>
+	      <p id="copyRightEn">Copyright &copy; 2013 - 2019 CleFke&#39;Blog All Rights Reserved.</p>
+	      
+	      
+    		<p class="busuanzi_uv">
+				UV : <span id="busuanzi_value_site_uv"></span> |  
+				PV : <span id="busuanzi_value_site_pv"></span>
+		    </p>
+  		   
+		</div>
+
+		
+  </div>
+</footer>
+
+
+<!-- min height -->
+
+<script>
+    var wrapdiv = document.getElementById("wrap");
+    var contentdiv = document.getElementById("content");
+    var allheader = document.getElementById("allheader");
+
+    wrapdiv.style.minHeight = document.body.offsetHeight + "px";
+    if (allheader != null) {
+      contentdiv.style.minHeight = document.body.offsetHeight - allheader.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    } else {
+      contentdiv.style.minHeight = document.body.offsetHeight - document.getElementById("footer").offsetHeight + "px";
+    }
+</script>
+    </div>
+    <!-- <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/categories" class="mobile-nav-link">Categories</a>
+  
+    <a href="/tags" class="mobile-nav-link">Tags</a>
+  
+    <a href="/about" class="mobile-nav-link">About</a>
+  
+</nav> -->
+    
+
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/scripts.js"></script>
+
+
+
+
+  <script src="/js/dialog.js"></script>
+
+
+
+
+
+
+
+
+	<div style="display: none;">
+    <script src="https://s95.cnzz.com/z_stat.php?id=1260716016&web_id=1260716016" language="JavaScript"></script>
+  </div>
+
+
+
+	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+	</script>
+
+
+
+
+
+
+  </div>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="myModalLabel">设置</h2>
+      </div>
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+
+
+      <div class="modal-body">
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" onclick="javascript:setFontSize();" aria-expanded="true" aria-controls="collapseOne">
+              正文字号大小
+            </a>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            您已调整页面字体大小
+          </div>
+        </div>
+      
+
+
+          <div style="margin:6px;">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" onclick="javascript:setBackground();" aria-expanded="true" aria-controls="collapseTwo">
+              夜间护眼模式
+            </a>
+        </div>
+          <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            夜间模式已经开启，再次单击按钮即可关闭 
+          </div>
+        </div>
+
+        <div>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关 于&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+         <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            CleFke&#39;Blog
+          </div>
+          <div class="panel-body">
+            Copyright © 2019 CleFke All Rights Reserved.
+          </div>
+        </div>
+      </div>
+
+
+      <hr style="margin-top:0px; margin-bottom:0px; width:80%; border-top: 1px solid #000;">
+      <hr style="margin-top:2px; margin-bottom:0px; width:80%; border-top: 3px solid #000;">
+      <div class="modal-footer">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <a id="rocket" href="#top" class=""></a>
+  <script type="text/javascript" src="/js/totop.js?v=1.0.0" async=""></script>
+  
+    <a id="menu-switch"><i class="fa fa-bars fa-lg"></i></a>
+  
+</body>
+</html>
