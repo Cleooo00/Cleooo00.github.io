@@ -5,9 +5,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://haoyuliugh.github.io/"/>
   <updated>2019-09-21T10:45:53.001Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://haoyuliugh.github.io/</id>
   
   <author>
     <name>CleFke</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>围棋算法</title>
-    <link href="http://yoursite.com/2019/09/21/%E5%9B%B4%E6%A3%8B%E7%AE%97%E6%B3%95/"/>
-    <id>http://yoursite.com/2019/09/21/围棋算法/</id>
+    <link href="http://haoyuliugh.github.io/2019/09/21/%E5%9B%B4%E6%A3%8B%E7%AE%97%E6%B3%95/"/>
+    <id>http://haoyuliugh.github.io/2019/09/21/围棋算法/</id>
     <published>2019-09-21T10:14:04.000Z</published>
     <updated>2019-09-21T10:45:53.001Z</updated>
     
@@ -38,8 +38,8 @@
   
   <entry>
     <title>前端部分基础知识</title>
-    <link href="http://yoursite.com/2019/09/02/%E5%89%8D%E7%AB%AF%E9%83%A8%E5%88%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
-    <id>http://yoursite.com/2019/09/02/前端部分基础知识/</id>
+    <link href="http://haoyuliugh.github.io/2019/09/02/%E5%89%8D%E7%AB%AF%E9%83%A8%E5%88%86%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    <id>http://haoyuliugh.github.io/2019/09/02/前端部分基础知识/</id>
     <published>2019-09-02T13:07:34.000Z</published>
     <updated>2019-09-02T13:13:02.993Z</updated>
     
@@ -58,8 +58,8 @@
   
   <entry>
     <title>一些莫名其妙的东西</title>
-    <link href="http://yoursite.com/2019/08/31/%E4%B8%80%E4%BA%9B%E8%8E%AB%E5%90%8D%E5%85%B6%E5%A6%99%E7%9A%84%E4%B8%9C%E8%A5%BF/"/>
-    <id>http://yoursite.com/2019/08/31/一些莫名其妙的东西/</id>
+    <link href="http://haoyuliugh.github.io/2019/08/31/%E4%B8%80%E4%BA%9B%E8%8E%AB%E5%90%8D%E5%85%B6%E5%A6%99%E7%9A%84%E4%B8%9C%E8%A5%BF/"/>
+    <id>http://haoyuliugh.github.io/2019/08/31/一些莫名其妙的东西/</id>
     <published>2019-08-31T14:35:25.000Z</published>
     <updated>2019-09-02T13:13:49.125Z</updated>
     
