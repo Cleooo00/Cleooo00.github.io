@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[post汇编中使用带比例因子的变址寻址易错点]]></title>
-    <url>%2F2020%2F05%2F07%2F%E6%B1%87%E7%BC%96%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%B8%A6%E6%AF%94%E4%BE%8B%E5%9B%A0%E5%AD%90%E7%9A%84%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E6%98%93%E9%94%99%E7%82%B9%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[汇编中变址寻址操作易错点]]></title>
+    <url>%2F2020%2F05%2F07%2F%E6%B1%87%E7%BC%96%E4%B8%AD%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E6%93%8D%E4%BD%9C%E6%98%93%E9%94%99%E7%82%B9%2F</url>
+    <content type="text"><![CDATA[写在前面 在汇编语言中，针对数组操作，可以使用间接寻址，或者变址寻址。在变址寻址操作时，遇到了一系列问题，遂做总结，避免再犯。 问题描述 有一个带有8个WORD型数据的数组，想要对其偶数项进行求和 间接寻址方法12345678910111213141516171819202122232425262728; Operators (Operator.asm); Demonstrates the TYPE, LENGTHOF, and SIZEOF operators.386.model flat,stdcall.stack 4096ExitProcess PROTO,stdcall:dword.dataarrofw WORD 1,2,1,2,1,2,1,2 ;数据中，偶数序求和结果为2*4，奇数序求和为1*4sum WORD 0.codemain PROC mov EDI,OFFSET arrofw add EDI,2 ;现在指向第二个数据 mov ECX,LENGTHOF arrofw mov AX,0L1: add AX,[EDI] ;依次累加 add EDI,2*TYPE arrofw ;求偶数序，所以向后偏移 LOOP L1 mov sum,AX invoke ExitProcess,0main ENDPEND main 带比例因子的变址寻址方法123456789101112131415161718192021222324252627; Operators (Operator.asm); Demonstrates the TYPE, LENGTHOF, and SIZEOF operators.386.model flat,stdcall.stack 4096ExitProcess PROTO,stdcall:dword.dataarrofw WORD 1,2,1,2,1,2,1,2 ;数据中，偶数序求和结果为2*4，奇数序求和为1*4sum WORD 0.codemain PROC mov AX,0 mov ESI,1 mov ECX,LENGTHOF arrofwL1: add AX,arrofw[ESI*TYPE arrofw] ;依次累加 add ESI,2 ;求偶数序，所以每次加2 LOOP L1 mov sum,AX invoke ExitProcess,0main ENDPEND main 犯的错误 在使用寄存器时，没有考虑数据类型为WORD型，应该使用16位寄存器AX，而不是32位的EAX等等寄存器； 为什么又使用了EDI，ESI等寄存器？因为在OFFSET指令中，返回的地址一半为32位的，所以用32位的EDI寄存器来存；ESI同理。 这里不能用DI或者SI]]></content>
       <categories>
         <category>汇编语言</category>
       </categories>
+      <tags>
+        <tag>易错点</tag>
+        <tag>间接寻址</tag>
+        <tag>带比例因子的变址寻址</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[围棋算法]]></title>

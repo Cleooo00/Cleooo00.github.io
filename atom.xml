@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://haoyuliugh.github.io/"/>
-  <updated>2020-05-07T08:56:47.362Z</updated>
+  <updated>2020-05-07T09:47:46.628Z</updated>
   <id>http://haoyuliugh.github.io/</id>
   
   <author>
@@ -17,18 +17,30 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>post汇编中使用带比例因子的变址寻址易错点</title>
-    <link href="http://haoyuliugh.github.io/2020/05/07/%E6%B1%87%E7%BC%96%E4%B8%AD%E4%BD%BF%E7%94%A8%E5%B8%A6%E6%AF%94%E4%BE%8B%E5%9B%A0%E5%AD%90%E7%9A%84%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E6%98%93%E9%94%99%E7%82%B9/"/>
-    <id>http://haoyuliugh.github.io/2020/05/07/汇编中使用带比例因子的变址寻址易错点/</id>
-    <published>2020-05-07T08:52:56.000Z</published>
-    <updated>2020-05-07T08:56:47.362Z</updated>
+    <title>汇编中变址寻址操作易错点</title>
+    <link href="http://haoyuliugh.github.io/2020/05/07/%E6%B1%87%E7%BC%96%E4%B8%AD%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80%E6%93%8D%E4%BD%9C%E6%98%93%E9%94%99%E7%82%B9/"/>
+    <id>http://haoyuliugh.github.io/2020/05/07/汇编中变址寻址操作易错点/</id>
+    <published>2020-05-07T09:05:18.000Z</published>
+    <updated>2020-05-07T09:47:46.628Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><blockquote><p>在汇编语言中，针对数组操作，可以使用间接寻址，或者变址寻址。在变址寻址操作时，遇到了一系列问题，遂做总结，避免再犯。</p></blockquote><a id="more"></a><h4 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h4><blockquote><p>有一个带有8个WORD型数据的数组，想要对其偶数项进行求和</p></blockquote><h4 id="间接寻址方法"><a href="#间接寻址方法" class="headerlink" title="间接寻址方法"></a>间接寻址方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">; Operators (Operator.asm)</span><br><span class="line"></span><br><span class="line">; Demonstrates the TYPE, LENGTHOF, and SIZEOF operators</span><br><span class="line"></span><br><span class="line">.386</span><br><span class="line">.model flat,stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">ExitProcess PROTO,stdcall:dword</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">arrofw WORD 1,2,1,2,1,2,1,2 ;数据中，偶数序求和结果为2*4，奇数序求和为1*4</span><br><span class="line">sum WORD 0</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">mov EDI,OFFSET arrofw     </span><br><span class="line">add EDI,2                 ;现在指向第二个数据</span><br><span class="line">mov ECX,LENGTHOF arrofw   </span><br><span class="line">mov AX,0</span><br><span class="line">L1:</span><br><span class="line">add AX,[EDI]              ;依次累加</span><br><span class="line">add EDI,2*TYPE arrofw     ;求偶数序，所以向后偏移</span><br><span class="line">    LOOP L1</span><br><span class="line">    mov sum,AX   </span><br><span class="line"></span><br><span class="line">invoke ExitProcess,0</span><br><span class="line">main ENDP</span><br><span class="line">END main</span><br></pre></td></tr></table></figure><h4 id="带比例因子的变址寻址方法"><a href="#带比例因子的变址寻址方法" class="headerlink" title="带比例因子的变址寻址方法"></a>带比例因子的变址寻址方法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">; Operators (Operator.asm)</span><br><span class="line"></span><br><span class="line">; Demonstrates the TYPE, LENGTHOF, and SIZEOF operators</span><br><span class="line"></span><br><span class="line">.386</span><br><span class="line">.model flat,stdcall</span><br><span class="line">.stack 4096</span><br><span class="line">ExitProcess PROTO,stdcall:dword</span><br><span class="line"></span><br><span class="line">.data</span><br><span class="line">arrofw WORD 1,2,1,2,1,2,1,2 ;数据中，偶数序求和结果为2*4，奇数序求和为1*4</span><br><span class="line">sum WORD 0</span><br><span class="line"></span><br><span class="line">.code</span><br><span class="line">main PROC</span><br><span class="line">mov AX,0     </span><br><span class="line">movESI,1    </span><br><span class="line">mov ECX,LENGTHOF arrofw</span><br><span class="line">L1:</span><br><span class="line">add AX,arrofw[ESI*TYPE arrofw]  ;依次累加</span><br><span class="line">add ESI,2                      ;求偶数序，所以每次加2</span><br><span class="line">    LOOP L1</span><br><span class="line">    mov sum,AX</span><br><span class="line"></span><br><span class="line">invoke ExitProcess,0</span><br><span class="line">main ENDP</span><br><span class="line">END main</span><br></pre></td></tr></table></figure><h4 id="犯的错误"><a href="#犯的错误" class="headerlink" title="犯的错误"></a>犯的错误</h4><blockquote><ul><li>在使用寄存器时，没有考虑数据类型为WORD型，应该使用16位寄存器AX，而不是32位的EAX等等寄存器；</li><li>为什么又使用了EDI，ESI等寄存器？因为在OFFSET指令中，返回的地址一半为32位的，所以用32位的EDI寄存器来存；ESI同理。 <strong>这里不能用DI或者SI</strong></li></ul></blockquote>]]></content>
     
     <summary type="html">
+    
+      &lt;h4 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h4&gt;&lt;blockquote&gt;
+&lt;p&gt;在汇编语言中，针对数组操作，可以使用间接寻址，或者变址寻址。在变址寻址操作时，遇到了一系列问题，遂做总结，避免再犯。&lt;/p&gt;
+&lt;/blockquote&gt;
     
     </summary>
     
       <category term="汇编语言" scheme="http://haoyuliugh.github.io/categories/%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80/"/>
     
+    
+      <category term="易错点" scheme="http://haoyuliugh.github.io/tags/%E6%98%93%E9%94%99%E7%82%B9/"/>
+    
+      <category term="间接寻址" scheme="http://haoyuliugh.github.io/tags/%E9%97%B4%E6%8E%A5%E5%AF%BB%E5%9D%80/"/>
+    
+      <category term="带比例因子的变址寻址" scheme="http://haoyuliugh.github.io/tags/%E5%B8%A6%E6%AF%94%E4%BE%8B%E5%9B%A0%E5%AD%90%E7%9A%84%E5%8F%98%E5%9D%80%E5%AF%BB%E5%9D%80/"/>
     
   </entry>
   
