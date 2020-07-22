@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[常用的轮子（一）]]></title>
+    <url>%2F2020%2F07%2F22%2F%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AE%E5%AD%90%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[队列 初始化 1Queue&lt;Integer&gt; q = new LinkedList(); 获取队首元素（如果队列为空则返回null） 1q.peek() 入队 1q.offer(data) //data 即入队元素 出队 1q.poll() //队列 先进先出 出队为对首元素 获取队列大小 1q.size() 栈 初始化 1Stack&lt;Integer&gt; s = new Stack&lt;&gt;() 入栈 1s.push(data) //data即是入栈元素 出栈 1s.pop() //先进后出 栈顶出栈 判断栈是否为空 1s.empty() //return boolean,'true' means empty 获取栈顶元素 1s.peek() //get the top element 获取栈大小（元素个数） 1s.size()]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>基础知识</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Servlet url-pattern路径匹配问题]]></title>
     <url>%2F2020%2F05%2F16%2FServlet-url-pattern%E8%B7%AF%E5%BE%84%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[写在前面 在Servlet映射过程中，遇到了一个路径匹配的问题，遂做记录。 如图所示 原思路在login.html页面中有一个form表单，现在想利用action属性提交信息。 于是在xml文件中配置了如下信息： 12345678&lt;servlet&gt; &lt;servlet-name&gt;LoginCheck&lt;/servlet-name&gt; &lt;servlet-class&gt;com.login.Users&lt;/servlet-class&gt; &lt;/servlet&gt; &lt;servlet-mapping&gt; &lt;servlet-name&gt;LoginCheck&lt;/servlet-name&gt; &lt;url-pattern&gt;/loginCheck&lt;/url-pattern&gt; &lt;/servlet-mapping&gt; 在表单属性中： 1&lt;form action="loginCheck" method="post"&gt; 问题此时，是找不到loginCheck目标的。经过查阅网上资料，发现url-pattern属性的初识位置是/web页面，若直接写/loginCheck表示从web根目录下面找文件。 解决因为目标在login.html里，html文件夹下，所以需要修改url-pattern的值为： 1&lt;url-pattern&gt;/html/loginCheck&lt;/url-pattern&gt; 这样才表示去html文件夹下寻找目标，才能正确匹配上。]]></content>

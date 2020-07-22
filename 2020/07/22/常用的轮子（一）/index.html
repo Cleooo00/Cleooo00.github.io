@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#34495e">
-  <title>Servlet url-pattern路径匹配问题 | CleFke&#39;Blog</title>
+  <title>常用的轮子（一） | CleFke&#39;Blog</title>
   <link rel="alternate" href="path/of/rss" type="application/atom+xml">
   <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
   <link rel="stylesheet" href="/css/style.css">
@@ -67,10 +67,10 @@
     <div class="banner-title">
       
         <div class="post-title">
-          Servlet url-pattern路径匹配问题
+          常用的轮子（一）
             <div class="post-tags">
     		    
-              <a class="tag-link" href="/tags/Servlet/">Servlet</a>
+              <a class="tag-link" href="/tags/基础知识/">基础知识</a>
             
     	      </div>
         </div>
@@ -85,20 +85,20 @@
 
   <header>
     <div class="post-title mobile-post-title">
-      <h1>Servlet url-pattern路径匹配问题</h1>
+      <h1>常用的轮子（一）</h1>
         <div class="post-tags">
         
-          <a class="tag-link" href="/tags/Servlet/">Servlet</a>
+          <a class="tag-link" href="/tags/基础知识/">基础知识</a>
         
         </div>
     </div>
     <div class="post-meta">
-      <span class="post-time"><i class="iconfont icon-calendar"></i>2020-05-16</span>
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2020-07-22</span>
       
           
             <i class="iconfont icon-divide"></i>
             <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
-            <a class="post-category" href="/categories/JAVA学习/">JAVA学习</a>
+            <a class="post-category" href="/categories/算法/">算法</a>
           
       
       <!----------------------------------->
@@ -110,31 +110,100 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#写在前面"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#原思路"><span class="toc-text">原思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#问题"><span class="toc-text">问题</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决"><span class="toc-text">解决</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#队列"><span class="toc-text">队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#栈"><span class="toc-text">栈</span></a></li></ol>
     </div>
   </div>
 
 
   <div class="post-content">
-    <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><blockquote>
-<p>在Servlet映射过程中，遇到了一个路径匹配的问题，遂做记录。</p>
-</blockquote>
-<a id="more"></a>
+    <h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><a id="more"></a>
 
-<p>如图所示</p>
-<p><img src="//haoyuliugh.github.io/2020/05/16/Servlet-url-pattern路径匹配问题/1.JPG" alt="1"></p>
-<h4 id="原思路"><a href="#原思路" class="headerlink" title="原思路"></a>原思路</h4><p>在login.html页面中有一个form表单，现在想利用action属性提交信息。</p>
-<p>于是在xml文件中配置了如下信息：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">servlet</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>LoginCheck<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-class</span>&gt;</span>com.login.Users<span class="tag">&lt;/<span class="name">servlet-class</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">servlet</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">servlet-mapping</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">servlet-name</span>&gt;</span>LoginCheck<span class="tag">&lt;/<span class="name">servlet-name</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/loginCheck<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">servlet-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>初始化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Queue&lt;Integer&gt; q = <span class="keyword">new</span> LinkedList();</span><br></pre></td></tr></table></figure>
 
-<p>在表单属性中：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"loginCheck"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><p>此时，是找不到loginCheck目标的。经过查阅网上资料，发现url-pattern属性的初识位置是/web页面，若直接写/loginCheck表示从web根目录下面找文件。</p>
-<h4 id="解决"><a href="#解决" class="headerlink" title="解决"></a>解决</h4><p>因为目标在login.html里，html文件夹下，所以需要修改url-pattern的值为：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">url-pattern</span>&gt;</span>/html/loginCheck<span class="tag">&lt;/<span class="name">url-pattern</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>这样才表示去html文件夹下寻找目标，才能正确匹配上。</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>获取队首元素（如果队列为空则返回null）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.peek()</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>入队</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.offer(data)   <span class="comment">//data 即入队元素</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>出队</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.poll()        <span class="comment">//队列 先进先出 出队为对首元素</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>获取队列大小</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q.size()</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<h4 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h4><ol>
+<li><p>初始化</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Stack&lt;Integer&gt; s = <span class="keyword">new</span> Stack&lt;&gt;()</span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>入栈</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.push(data)   <span class="comment">//data即是入栈元素</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="3">
+<li><p>出栈</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.pop()        <span class="comment">//先进后出 栈顶出栈</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="4">
+<li><p>判断栈是否为空</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.empty()      <span class="comment">//return boolean,'true' means empty</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="5">
+<li><p>获取栈顶元素</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.peek()      <span class="comment">//get the top element</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ol>
+<ol start="6">
+<li><p>获取栈大小（元素个数）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s.size()</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
 
   </div>
   <div class="post-footer">the end</div>
@@ -143,13 +212,9 @@
           
   <nav class="pagination post-nav">
     
-      <a href="/2020/07/22/常用的轮子（一）/">
-        <span class="prev-post"><i class="iconfont icon-back"></i>常用的轮子（一）</span>
-      </a>
     
-    
-      <a href="/2020/05/09/JSP实现简单登录/">
-        <span class="next-post">JSP实现简单登录<i class="iconfont icon-more"></i></span>
+      <a href="/2020/05/16/Servlet-url-pattern路径匹配问题/">
+        <span class="next-post">Servlet url-pattern路径匹配问题<i class="iconfont icon-more"></i></span>
       </a>
     
   </nav>
