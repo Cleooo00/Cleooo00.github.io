@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[安装双系统以及ssr总结]]></title>
+    <url>%2F2021%2F03%2F31%2F%E5%AE%89%E8%A3%85%E5%8F%8C%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8Assr%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[写在前面在自己电脑上安装了Ubuntu双系统，并安装了一些基础软件，中间遇到了很多问题，遂作记录 电脑版本电脑是联想拯救者 256G固态硬盘 + 1T机械硬盘 即 UEFI 新式bios 双硬盘 查看自己是否是UEFI还是传统MBR win + r 输入 msinfo32 如下： 这个版本很重要，之前看错了教程走了弯路，双硬盘的安装双系统有一些区别。 参考的是这篇教程，写的很详细，感谢大哥 装系统记录首先是下载Ubuntu系统镜像文件，直接到官网下载，我下载的版本是Ubuntu 18.04 LTS 然后是制作启动盘，这里，如果是新版UEFI的可以直接把下载好的 iso文件解压到你的u盘。但为了不出错，仍然安装传统的方法制作启动盘。 首先下载启动盘制作工具 这里我使用的是 UltraISO 直接下载安装一套组合拳，然后点击试用即可，详细看文章开头大哥的教程 然后插入你的u盘，这里制作启动盘参考百度的教程，不赘述。 注意点： 这里的u盘需要8G以上，不然装不下，而且U盘内容在安装的过程中会被清空，需要提前备份 也可以使用移动硬盘，但在格式化的时候要注意格式化的格式 到这里，已经制作好了你的启动盘，可以在此电脑里面看到它，注意，不要去动它。 然后是进行系统分区右键此电脑-&gt;点击管理-&gt;点击磁盘管理-&gt;进行分区 如图所示，红色框中，我已经安装好了系统。但新开辟出来的空间应该是黑色或绿色的而不是蓝色。 注意： 因为是双硬盘，所以最好在你的固态硬盘单独开辟一块空间用来放Ubuntu的系统文件（200M），这样，在每次开机的时候自动检测，可以自主选择进入Ubuntu还是Windows系统 接下来进行bios设置重启电脑，在显示开机页面时进入bios，将Secure Boot 关闭。 注意:因为刚刚在固态硬盘开辟了空间，但实际上，安装Ubuntu时是看不见此固态盘的，还需要进行如下设置： 将BIOS中的SATA设置改为AHCI，然后保存更改并退出 此时，准备工作做完重启按F12（联想拯救者）进入启动页，选择u盘，一路按照文章开头教程即可。 SSR配置在Windows下有完整的客户端，在Ubuntu中，有两种方式，一是直接下载SSR脚本，处理配置文件，开始时我使用这种，但中间出了很多毛病。 最后，找到了一个名为electron-ssr的图形化界面的软件 https://github.com/shadowsocksrr/electron-ssr/releases/tag/v0.2.7 由于一些熟知的原因，很多时候上不去github，可将github.com替换为hub.fastgit.org 参考这位大哥的方法，下载安装 Ubuntu下deb为安装文件，就像windows下的安装文件一样，下载下来进行安装，比较简单。 接下来进入安装包的下载目录进行安装 1sudo dpkg -i electron-ssr-0.2.7.deb 安装完后，直接启动 1electron-ssr 这里遇到了一个问题electron-ssr是ssr的图形界面，所以在第一次启动时会自动下载 ssr python包，但由于网络问题，发现上不去，无法自动下载。 报错与这位兄弟类似： 一开始以为是之前下载的ssr服务开着，然后把他卸载了发现还是不行。重装软件，最后依然没找到解决方法。 索性手动下载 123sudo apt-get install git #没有git的话先把git下载了git clone https://github.com/shadowsocksr/shadowsocksr.git#如果下载太慢或这上不去就参照上面的将github.com替换为hub.fastgit.org 然后进入下载目录下的/shadowsocksr/bin 在里面应该能看到一个local.py文件，如果没有看到就在重新找找，找到后，将此路径添加到electron-ssr的python包处，即可。 然后配置你的代理信息，并且在Ubuntu的系统设置设置代理，这位大哥写了详细的操作步骤。 大功告成]]></content>
+      <categories>
+        <category>杂项</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu ssr</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[FIRST集和FOLLOW集的理解和补充]]></title>
+    <url>%2F2020%2F11%2F26%2FFIRST%E9%9B%86%E5%92%8CFOLLOW%E9%9B%86%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E8%A1%A5%E5%85%85%2F</url>
+    <content type="text"><![CDATA[写在前面编译原理，关于FIRST集和FOLLOW集部分的笔记，本文参考了另一篇博客，在此基础上加入了一些个人的理解。 FIRST集定义设文法 $G= (V_T,V_N,S,P)$是上下文无关文法，则有 $$FIRST(\alpha) ={a|\alpha\Rightarrow^*a…,a\in V_T} $$ 例子 后面是终结符 12345&gt; A-&gt;aB|ε&gt; A-&gt;c&gt; &gt; FIRST(A) = &#123;a,c,ε&#125;&gt; 因为A能直接得到的第一个终结符包括a，c，ε，所以把他们加入。 后面是非终结符（一） 12345&gt; A-&gt;Ba&gt; B-&gt;b&gt; &gt; FIRST(A) = &#123;b&#125;&gt; A能直接得到的是一个非终结符，而这个非终结符只能得到一个终结符b，所以把b加入。 后面是非终结符（二） 12345&gt; A-&gt;Bc&gt; B-&gt;b|ε&gt; &gt; First(A)=&#123;b,c&#125;&gt; 注意，这里没有把ε也加入到First集中，是因为A通过B得到ε时，还能继续向后，也就是说将ε代换到第一个式子里面，后面还有一个非终结符c，所以不能把ε加入。 我们可以说$First(B)={b,ε}$，这是显然的。 后面是非终结符（三） 123456&gt; A-&gt;BC&gt; B-&gt;b|ε&gt; C-&gt;c|ε&gt; &gt; First(A)=&#123;b,c,ε&#125;&gt; 对比第3条，为什么这里又把ε加入了，是因为将ε代换B后，继续向后，发现C也能被ε代换，于是应用了课本第三条规则，即$A-&gt;ε$,此时可以将ε加入到First集。 FOLLOW集定义设S是文法G的开始符号，对于G中的任何一个非终结符A，则有 $$FOLLOW(A) ={a|S\Rightarrow^*…Aa…,a\in V_T} $$ 理解$FOLLOW(A)$就是紧跟在A后面的终结符集和或者结束符$’$‘$ 求解规则 对于文法的开始符号S,则把$$$放进Follow（S）中； 若$A-&gt;αBβ$是一个产生式，则把$First(β)$中除了ε以外的符号加入到Follow（B）中； 若$A-&gt;αB$是一个产生式，或$A-&gt;αBβ$是一个产生式且$First(\beta)$中包含ε，则把$Follow(A)$加入到$Follow(B)$中]]></content>
+      <categories>
+        <category>编译原理</category>
+      </categories>
+      <tags>
+        <tag>易错点</tag>
+        <tag>FIRST集</tag>
+        <tag>FOLLOW集</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[常用的轮子（一）]]></title>
     <url>%2F2020%2F07%2F22%2F%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BD%AE%E5%AD%90%EF%BC%88%E4%B8%80%EF%BC%89%2F</url>
     <content type="text"><![CDATA[队列 初始化 1Queue&lt;Integer&gt; q = new LinkedList(); 获取队首元素（如果队列为空则返回null） 1q.peek() 入队 1q.offer(data) //data 即入队元素 出队 1q.poll() //队列 先进先出 出队为对首元素 获取队列大小 1q.size() 栈 初始化 1Stack&lt;Integer&gt; s = new Stack&lt;&gt;() 入栈 1s.push(data) //data即是入栈元素 出栈 1s.pop() //先进后出 栈顶出栈 判断栈是否为空 1s.empty() //return boolean,'true' means empty 获取栈顶元素 1s.peek() //get the top element 获取栈大小（元素个数） 1s.size()]]></content>

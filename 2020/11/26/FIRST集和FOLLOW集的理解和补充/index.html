@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>FIRST集和FOLLOW集的理解和补充 | CleFke&#39;Blog</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">CleFke</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">CleFke</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          FIRST集和FOLLOW集的理解和补充
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/FIRST集/">FIRST集</a> <a class="tag-link" href="/tags/FOLLOW集/">FOLLOW集</a> <a class="tag-link" href="/tags/易错点/">易错点</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>FIRST集和FOLLOW集的理解和补充</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/FIRST集/">FIRST集</a> <a class="tag-link" href="/tags/FOLLOW集/">FOLLOW集</a> <a class="tag-link" href="/tags/易错点/">易错点</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2020-11-26</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/编译原理/">编译原理</a>
+          
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#写在前面"><span class="toc-text">写在前面</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FIRST集"><span class="toc-text">FIRST集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#定义"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FOLLOW集"><span class="toc-text">FOLLOW集</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#定义-1"><span class="toc-text">定义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#理解"><span class="toc-text">理解</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#求解规则"><span class="toc-text">求解规则</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>编译原理，关于FIRST集和FOLLOW集部分的笔记，本文参考了<a href="https://www.cnblogs.com/10134dz/p/13631696.html" target="_blank" rel="noopener">另一篇博客</a>，在此基础上加入了一些个人的理解。</p>
+<a id="more"></a>
+
+<h4 id="FIRST集"><a href="#FIRST集" class="headerlink" title="FIRST集"></a>FIRST集</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>设文法 $G= (V_T,V_N,S,P)$是上下文无关文法，则有 $$FIRST(\alpha) ={a|\alpha\Rightarrow^*a…,a\in V_T} $$ </p>
+<h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><blockquote>
+<ol>
+<li><p>后面是终结符</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;   A-&gt;aB|ε</span><br><span class="line">&gt;   A-&gt;c</span><br><span class="line">&gt;   </span><br><span class="line">&gt;   FIRST(A) = &#123;a,c,ε&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>  因为A能<strong>直接</strong>得到的第一个终结符包括a，c，ε，所以把他们加入。</p>
+<ol start="2">
+<li><p>后面是非终结符（一）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;   A-&gt;Ba</span><br><span class="line">&gt;   B-&gt;b</span><br><span class="line">&gt;   </span><br><span class="line">&gt;   FIRST(A) = &#123;b&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>  A能直接得到的是一个非终结符，而这个非终结符<strong>只能</strong>得到一个终结符b，所以把b加入。</p>
+<ol start="3">
+<li><p>后面是非终结符（二）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;   A-&gt;Bc</span><br><span class="line">&gt;   B-&gt;b|ε</span><br><span class="line">&gt;   </span><br><span class="line">&gt;   First(A)=&#123;b,c&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>  注意，这里没有把ε也加入到First集中，是因为A通过B得到ε时，还能继续向后，也就是说将ε代换到第一个式子里面，后面还有一个非终结符c，所以<strong>不能把ε加入</strong>。</p>
+<p>  我们可以说$First(B)={b,ε}$，这是显然的。</p>
+<ol start="4">
+<li><p>后面是非终结符（三）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;   A-&gt;BC</span><br><span class="line">&gt;   B-&gt;b|ε</span><br><span class="line">&gt;   C-&gt;c|ε</span><br><span class="line">&gt;   </span><br><span class="line">&gt;   First(A)=&#123;b,c,ε&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>  对比第3条，为什么这里又把ε加入了，是因为将ε代换B后，继续向后，发现C也能被ε代换，于是应用了课本第三条规则，即$A-&gt;ε$,此时可以将ε加入到First集。</p>
+</blockquote>
+<h4 id="FOLLOW集"><a href="#FOLLOW集" class="headerlink" title="FOLLOW集"></a>FOLLOW集</h4><h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><p>设S是文法G的开始符号，对于G中的任何一个非终结符A，则有 $$FOLLOW(A) ={a|S\Rightarrow^*…Aa…,a\in V_T} $$ </p>
+<h5 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h5><p>$FOLLOW(A)$就是紧跟在A后面的终结符集和或者结束符$’$‘$</p>
+<h5 id="求解规则"><a href="#求解规则" class="headerlink" title="求解规则"></a>求解规则</h5><ol>
+<li>对于文法的开始符号S,则把$$$放进Follow（S）中；</li>
+<li>若$A-&gt;αBβ$是一个产生式，则把$First(β)$中<strong>除了ε以外的符号</strong>加入到Follow（B）中；</li>
+<li>若$A-&gt;αB$是一个产生式，或$A-&gt;αBβ$是一个产生式且$First(\beta)$中包含ε，则把$Follow(A)$加入到$Follow(B)$中</li>
+</ol>
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+      <a href="/2021/03/31/安装双系统以及ssr总结/">
+        <span class="prev-post"><i class="iconfont icon-back"></i>安装双系统以及ssr总结</span>
+      </a>
+    
+    
+      <a href="/2020/07/22/常用的轮子（一）/">
+        <span class="next-post">常用的轮子（一）<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+        
+          
+        
+          
+            <a href="https://github.com/HaoYuLiuGH"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>命运如织，当如磐石</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 ztopic
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2021
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>CleFke</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i></div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>

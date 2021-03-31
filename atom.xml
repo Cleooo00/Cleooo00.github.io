@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://haoyuliugh.github.io/"/>
-  <updated>2020-07-22T08:33:47.500Z</updated>
+  <updated>2021-03-31T12:38:01.855Z</updated>
   <id>http://haoyuliugh.github.io/</id>
   
   <author>
@@ -15,6 +15,54 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>安装双系统以及ssr总结</title>
+    <link href="http://haoyuliugh.github.io/2021/03/31/%E5%AE%89%E8%A3%85%E5%8F%8C%E7%B3%BB%E7%BB%9F%E4%BB%A5%E5%8F%8Assr%E6%80%BB%E7%BB%93/"/>
+    <id>http://haoyuliugh.github.io/2021/03/31/安装双系统以及ssr总结/</id>
+    <published>2021-03-31T01:44:31.000Z</published>
+    <updated>2021-03-31T12:38:01.855Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>在自己电脑上安装了Ubuntu双系统，并安装了一些基础软件，中间遇到了很多问题，遂作记录</p><a id="more"></a><h4 id="电脑版本"><a href="#电脑版本" class="headerlink" title="电脑版本"></a>电脑版本</h4><p>电脑是联想拯救者 256G固态硬盘 + 1T机械硬盘 </p><p>即 UEFI 新式bios 双硬盘</p><p>查看自己是否是UEFI还是传统MBR</p><p>win + r 输入 msinfo32 </p><p>如下：</p><p><img src="//haoyuliugh.github.io/2021/03/31/安装双系统以及ssr总结/2.png" alt="02"></p><p>这个版本很重要，之前看错了教程走了弯路，双硬盘的安装双系统有一些区别。</p><p>参考的是<a href="https://www.cnblogs.com/masbay/p/10745170.html" target="_blank" rel="noopener">这篇教程</a>，写的很详细，感谢大哥</p><h4 id="装系统记录"><a href="#装系统记录" class="headerlink" title="装系统记录"></a>装系统记录</h4><p>首先是下载Ubuntu系统镜像文件，直接到<a href="https://cn.ubuntu.com/download" target="_blank" rel="noopener">官网</a>下载，我下载的版本是<a href="https://ubuntu.com/download/alternative-downloads" target="_blank" rel="noopener">Ubuntu 18.04 LTS</a></p><p><img src="//haoyuliugh.github.io/2021/03/31/安装双系统以及ssr总结/1.png" alt="01"></p><p>然后是制作启动盘，这里，如果是新版UEFI的可以直接把下载好的 iso文件解压到你的u盘。但为了不出错，仍然安装传统的方法制作启动盘。</p><hr><p>首先下载启动盘制作工具</p><p>这里我使用的是 <a href="https://cn.ultraiso.net/xiazai.html" target="_blank" rel="noopener">UltraISO</a> </p><p><img src="//haoyuliugh.github.io/2021/03/31/安装双系统以及ssr总结/3.png" alt="03"></p><p>直接下载安装一套组合拳，然后点击试用即可，详细看文章开头大哥的教程</p><p>然后插入你的u盘，这里制作启动盘参考百度的教程，不赘述。</p><h5 id="注意点："><a href="#注意点：" class="headerlink" title="注意点："></a>注意点：</h5><ol><li>这里的u盘需要8G以上，不然装不下，而且U盘内容在安装的过程中会被清空，需要提前备份</li><li>也可以使用移动硬盘，但在格式化的时候要注意格式化的格式 </li></ol><p>到这里，已经制作好了你的启动盘，可以在此电脑里面看到它，注意，不要去动它。</p><hr><h5 id="然后是进行系统分区"><a href="#然后是进行系统分区" class="headerlink" title="然后是进行系统分区"></a>然后是进行系统分区</h5><p>右键此电脑-&gt;点击管理-&gt;点击磁盘管理-&gt;进行分区</p><p><img src="//haoyuliugh.github.io/2021/03/31/安装双系统以及ssr总结/4.png" alt="04"></p><p>如图所示，红色框中，我已经安装好了系统。但新开辟出来的空间应该是黑色或绿色的而不是蓝色。</p><h5 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h5><ol><li>因为是双硬盘，所以最好在你的固态硬盘单独开辟一块空间用来放Ubuntu的系统文件（200M），这样，在每次开机的时候自动检测，可以自主选择进入Ubuntu还是Windows系统</li></ol><hr><h5 id="接下来进行bios设置"><a href="#接下来进行bios设置" class="headerlink" title="接下来进行bios设置"></a>接下来进行bios设置</h5><p>重启电脑，在显示开机页面时进入bios，将Secure Boot 关闭。</p><h5 id="注意"><a href="#注意" class="headerlink" title="注意:"></a>注意:</h5><p>因为刚刚在固态硬盘开辟了空间，但实际上，安装Ubuntu时是看不见此固态盘的，还需要进行如下设置：</p><p>将BIOS中的SATA设置改为AHCI，然后保存更改并退出</p><hr><h5 id="此时，准备工作做完"><a href="#此时，准备工作做完" class="headerlink" title="此时，准备工作做完"></a>此时，准备工作做完</h5><p>重启按F12（联想拯救者）进入启动页，选择u盘，一路按照文章开头教程即可。</p><h4 id="SSR配置"><a href="#SSR配置" class="headerlink" title="SSR配置"></a>SSR配置</h4><p>在Windows下有完整的客户端，在Ubuntu中，有两种方式，一是直接下载SSR脚本，处理配置文件，开始时我使用这种，但中间出了很多毛病。</p><p>最后，找到了一个名为electron-ssr的图形化界面的软件</p><p><a href="https://github.com/shadowsocksrr/electron-ssr/releases/tag/v0.2.7" target="_blank" rel="noopener">https://github.com/shadowsocksrr/electron-ssr/releases/tag/v0.2.7</a></p><p>由于一些熟知的原因，很多时候上不去github，可将github.com替换为hub.fastgit.org</p><p>参考这位大哥的方法，下载安装</p><p><img src="//haoyuliugh.github.io/2021/03/31/安装双系统以及ssr总结/7.png" alt="07"></p><p>Ubuntu下deb为安装文件，就像windows下的安装文件一样，下载下来进行安装，比较简单。</p><p>接下来进入安装包的下载目录进行安装</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i electron-ssr-0.2.7.deb</span><br></pre></td></tr></table></figure><p>安装完后，直接启动</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">electron-ssr</span><br></pre></td></tr></table></figure><h5 id="这里遇到了一个问题"><a href="#这里遇到了一个问题" class="headerlink" title="这里遇到了一个问题"></a>这里遇到了一个问题</h5><p>electron-ssr是ssr的图形界面，所以在第一次启动时会自动下载 ssr python包，但由于网络问题，发现上不去，无法自动下载。</p><p>报错与这位<a href="https://github.com/qingshuisiyuan/electron-ssr-backup/issues/33" target="_blank" rel="noopener">兄弟</a>类似：</p><p><img src="//haoyuliugh.github.io/2021/03/31/安装双系统以及ssr总结/8.png" alt="08"></p><p>一开始以为是之前下载的ssr服务开着，然后把他卸载了发现还是不行。重装软件，最后依然没找到解决方法。</p><p>索性手动下载</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install git #没有git的话先把git下载了</span><br><span class="line">git clone https://github.com/shadowsocksr/shadowsocksr.git</span><br><span class="line"><span class="meta">#</span>如果下载太慢或这上不去就参照上面的将github.com替换为hub.fastgit.org</span><br></pre></td></tr></table></figure><p>然后进入下载目录下的/shadowsocksr/bin</p><p><img src="//haoyuliugh.github.io/2021/03/31/安装双系统以及ssr总结/9.png" alt="09"></p><p>在里面应该能看到一个local.py文件，如果没有看到就在重新找找，找到后，将此路径添加到electron-ssr的python包处，即可。</p><p>然后配置你的代理信息，并且在Ubuntu的系统设置设置代理，这位<a href="https://github.com/qingshuisiyuan/electron-ssr-backup/blob/master/Ubuntu.md" target="_blank" rel="noopener">大哥</a>写了详细的操作步骤。</p><h4 id="大功告成"><a href="#大功告成" class="headerlink" title="大功告成"></a>大功告成</h4><p><img src="//haoyuliugh.github.io/2021/03/31/安装双系统以及ssr总结/10.jpg" alt="10"></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h4&gt;&lt;p&gt;在自己电脑上安装了Ubuntu双系统，并安装了一些基础软件，中间遇到了很多问题，遂作记录&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="杂项" scheme="http://haoyuliugh.github.io/categories/%E6%9D%82%E9%A1%B9/"/>
+    
+    
+      <category term="Ubuntu ssr" scheme="http://haoyuliugh.github.io/tags/Ubuntu-ssr/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FIRST集和FOLLOW集的理解和补充</title>
+    <link href="http://haoyuliugh.github.io/2020/11/26/FIRST%E9%9B%86%E5%92%8CFOLLOW%E9%9B%86%E7%9A%84%E7%90%86%E8%A7%A3%E5%92%8C%E8%A1%A5%E5%85%85/"/>
+    <id>http://haoyuliugh.github.io/2020/11/26/FIRST集和FOLLOW集的理解和补充/</id>
+    <published>2020-11-26T09:10:11.000Z</published>
+    <updated>2020-11-26T12:38:15.126Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h4><p>编译原理，关于FIRST集和FOLLOW集部分的笔记，本文参考了<a href="https://www.cnblogs.com/10134dz/p/13631696.html" target="_blank" rel="noopener">另一篇博客</a>，在此基础上加入了一些个人的理解。</p><a id="more"></a><h4 id="FIRST集"><a href="#FIRST集" class="headerlink" title="FIRST集"></a>FIRST集</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h5><p>设文法 $G= (V_T,V_N,S,P)$是上下文无关文法，则有 $$FIRST(\alpha) ={a|\alpha\Rightarrow^*a…,a\in V_T} $$ </p><h5 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h5><blockquote><ol><li><p>后面是终结符</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;   A-&gt;aB|ε</span><br><span class="line">&gt;   A-&gt;c</span><br><span class="line">&gt;   </span><br><span class="line">&gt;   FIRST(A) = &#123;a,c,ε&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><p>  因为A能<strong>直接</strong>得到的第一个终结符包括a，c，ε，所以把他们加入。</p><ol start="2"><li><p>后面是非终结符（一）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;   A-&gt;Ba</span><br><span class="line">&gt;   B-&gt;b</span><br><span class="line">&gt;   </span><br><span class="line">&gt;   FIRST(A) = &#123;b&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><p>  A能直接得到的是一个非终结符，而这个非终结符<strong>只能</strong>得到一个终结符b，所以把b加入。</p><ol start="3"><li><p>后面是非终结符（二）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;   A-&gt;Bc</span><br><span class="line">&gt;   B-&gt;b|ε</span><br><span class="line">&gt;   </span><br><span class="line">&gt;   First(A)=&#123;b,c&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><p>  注意，这里没有把ε也加入到First集中，是因为A通过B得到ε时，还能继续向后，也就是说将ε代换到第一个式子里面，后面还有一个非终结符c，所以<strong>不能把ε加入</strong>。</p><p>  我们可以说$First(B)={b,ε}$，这是显然的。</p><ol start="4"><li><p>后面是非终结符（三）</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;   A-&gt;BC</span><br><span class="line">&gt;   B-&gt;b|ε</span><br><span class="line">&gt;   C-&gt;c|ε</span><br><span class="line">&gt;   </span><br><span class="line">&gt;   First(A)=&#123;b,c,ε&#125;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure></li></ol></blockquote><blockquote><p>  对比第3条，为什么这里又把ε加入了，是因为将ε代换B后，继续向后，发现C也能被ε代换，于是应用了课本第三条规则，即$A-&gt;ε$,此时可以将ε加入到First集。</p></blockquote><h4 id="FOLLOW集"><a href="#FOLLOW集" class="headerlink" title="FOLLOW集"></a>FOLLOW集</h4><h5 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h5><p>设S是文法G的开始符号，对于G中的任何一个非终结符A，则有 $$FOLLOW(A) ={a|S\Rightarrow^*…Aa…,a\in V_T} $$ </p><h5 id="理解"><a href="#理解" class="headerlink" title="理解"></a>理解</h5><p>$FOLLOW(A)$就是紧跟在A后面的终结符集和或者结束符$’$‘$</p><h5 id="求解规则"><a href="#求解规则" class="headerlink" title="求解规则"></a>求解规则</h5><ol><li>对于文法的开始符号S,则把$$$放进Follow（S）中；</li><li>若$A-&gt;αBβ$是一个产生式，则把$First(β)$中<strong>除了ε以外的符号</strong>加入到Follow（B）中；</li><li>若$A-&gt;αB$是一个产生式，或$A-&gt;αBβ$是一个产生式且$First(\beta)$中包含ε，则把$Follow(A)$加入到$Follow(B)$中</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;写在前面&quot;&gt;&lt;a href=&quot;#写在前面&quot; class=&quot;headerlink&quot; title=&quot;写在前面&quot;&gt;&lt;/a&gt;写在前面&lt;/h4&gt;&lt;p&gt;编译原理，关于FIRST集和FOLLOW集部分的笔记，本文参考了&lt;a href=&quot;https://www.cnblogs.com/10134dz/p/13631696.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;另一篇博客&lt;/a&gt;，在此基础上加入了一些个人的理解。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="编译原理" scheme="http://haoyuliugh.github.io/categories/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/"/>
+    
+    
+      <category term="易错点" scheme="http://haoyuliugh.github.io/tags/%E6%98%93%E9%94%99%E7%82%B9/"/>
+    
+      <category term="FIRST集" scheme="http://haoyuliugh.github.io/tags/FIRST%E9%9B%86/"/>
+    
+      <category term="FOLLOW集" scheme="http://haoyuliugh.github.io/tags/FOLLOW%E9%9B%86/"/>
+    
+  </entry>
   
   <entry>
     <title>常用的轮子（一）</title>
