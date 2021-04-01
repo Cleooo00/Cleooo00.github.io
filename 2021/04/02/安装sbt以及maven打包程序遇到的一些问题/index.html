@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="theme-color" content="#34495e">
+  <title>安装sbt以及maven打包程序遇到的一些问题 | CleFke&#39;Blog</title>
+  <link rel="alternate" href="path/of/rss" type="application/atom+xml">
+  <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+  
+
+  
+
+  
+
+</head>
+
+<body>
+  <div class="mobile-header">
+    <span><i class="iconfont icon-turnon" id="mobile-nav-toggle"></i></span>
+    <div class="mobile-logo">
+      <a href="/.">CleFke</a>
+    </div>
+  </div>
+  <div class="page" id="mobile-nav-panel">
+    <div class="container">
+      <header class="site-nav">
+      <div class="nav-content">
+        <div class="logo">
+          <a href="/">CleFke</a>
+        </div>
+        <nav class="navbar">
+          <ul>
+            
+              <li class="menu-item">
+                <a href="/" class="menu-item-link"><i class="iconfont icon-home"></i>首页</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/archives" class="menu-item-link"><i class="iconfont icon-archive"></i>归档</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/categories" class="menu-item-link"><i class="iconfont icon-category"></i>分类</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/tags" class="menu-item-link"><i class="iconfont icon-tags"></i>标签</a>
+              </li>
+            
+              <li class="menu-item">
+                <a href="/about" class="menu-item-link"><i class="iconfont icon-about"></i>关于</a>
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+</header>
+
+      <div class="banner">
+  <div class="show">
+    <!-- <img src="/" alt="banner"> -->
+    <div class="banner-title">
+      
+        <div class="post-title">
+          安装sbt以及maven打包程序遇到的一些问题
+            <div class="post-tags">
+    		    
+              <a class="tag-link" href="/tags/spark-maven/">spark maven</a>
+            
+    	      </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+      <main class="main"id="main">
+          <article class="post">
+  
+
+  <header>
+    <div class="post-title mobile-post-title">
+      <h1>安装sbt以及maven打包程序遇到的一些问题</h1>
+        <div class="post-tags">
+        
+          <a class="tag-link" href="/tags/spark-maven/">spark maven</a>
+        
+        </div>
+    </div>
+    <div class="post-meta">
+      <span class="post-time"><i class="iconfont icon-calendar"></i>2021-04-02</span>
+      
+          
+            <i class="iconfont icon-divide"></i>
+            <i class="iconfont icon-folder" style="color: #8a8a8a;"></i>
+            <a class="post-category" href="/categories/大数据学习/">大数据学习</a>
+          
+      
+      <!----------------------------------->
+        
+      <!----------------------------------->
+    </div>
+  </header>
+  
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#sbt换国内源报错记录"><span class="toc-text">sbt换国内源报错记录</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mvn打包失败"><span class="toc-text">mvn打包失败</span></a></li></ol>
+    </div>
+  </div>
+
+
+  <div class="post-content">
+    <h4 id="sbt换国内源报错记录"><a href="#sbt换国内源报错记录" class="headerlink" title="sbt换国内源报错记录"></a>sbt换国内源报错记录</h4><a id="more"></a>
+
+<p>在首次尝试运行时，有如下报错：</p>
+<p><img src="//haoyuliugh.github.io/2021/04/02/安装sbt以及maven打包程序遇到的一些问题/1.png" alt="01"></p>
+<p>查阅<a href="https://stackoverflow.com/questions/24181348/sbt-install-you-probably-access-the-destination-server-through-a-proxy-server-t" target="_blank" rel="noopener">资料</a>发现需要手动配置代理，按照教程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/sbt/conf</span><br><span class="line">vim sbtconfig.txt</span><br></pre></td></tr></table></figure>
+
+<p>添加如下代理</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-Dhttp.proxyHost=proxy</span><br><span class="line">-Dhttp.proxyPort=8080</span><br></pre></td></tr></table></figure>
+
+<p>添加后仍然报错，发现</p>
+<blockquote>
+<p>/conf 目录下的两个文件 sbtconfig.txt 仅适用Windows，sbtopts适用Mac/Linux </p>
+</blockquote>
+<p>于是更改后者文件</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim  ./conf/sbtopts</span><br></pre></td></tr></table></figure>
+
+<p>重新添加上述代理，并在末尾新增</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-Dsbt.override.build.reops=true</span><br></pre></td></tr></table></figure>
+
+<p>运行成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[info] Set current project to sbt (in build file:/usr/local/sbt/)</span><br><span class="line">[info] 1.3.8</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="mvn打包失败"><a href="#mvn打包失败" class="headerlink" title="mvn打包失败"></a>mvn打包失败</h4><p>使用mvn命令打包，报错如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo: /usr/local/maven/bin/mvn：找不到命令</span><br></pre></td></tr></table></figure>
+
+<p>没有找到解决方案，于是将maven删除，使用apt-get下载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install maven</span><br></pre></td></tr></table></figure>
+
+<p>下载后查看maven版本</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn  -v</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Apache Maven 3.6.0</span><br><span class="line">Maven home: /usr/share/maven</span><br><span class="line">Java version: 1.8.0_162, vendor: Oracle Corporation, runtime: /usr/lib/jvm/jdk1.8.0_162/jre</span><br><span class="line">Default locale: zh_CN, platform encoding: UTF-8</span><br><span class="line">OS name: &quot;linux&quot;, version: &quot;5.4.0-71-generic&quot;, arch: &quot;amd64&quot;, family: &quot;unix&quot;</span><br></pre></td></tr></table></figure>
+
+<p>若替换为国内源，在下述位置更改settings.xml文件,在&lt;mirrors&gt;里面添加如下镜像</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云公共仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云谷歌仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/google<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云阿帕奇仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/apache-snapshots<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云spring仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/spring<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>aliyunmaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>阿里云spring插件仓库<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://maven.aliyun.com/repository/spring-plugin<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/share/maven/conf</span><br><span class="line">sudo vim settings.xml #这里要用sudo，该文件是只读文件，不然无法编辑</span><br></pre></td></tr></table></figure>
+
+<p>添加镜像的时候有个坑，它的xml文件里面是有mirrors目录的，参照了这篇<a href="http://www.360doc.com/content/20/0219/13/63557093_893137651.shtml" target="_blank" rel="noopener">博客</a>,最后解决</p>
+<p>ps 使用apt-get install 指令是时，下载的文件有如下路径：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/share  #文件的位置，其中conf配置文件也有可能在/share的此软件目录下，例如上述               maven配置文件在/usr/share/maven/conf下</span><br><span class="line">/usr/bin    #可执行文件位置</span><br><span class="line">/etc        #配置文件位置</span><br><span class="line">/usr/lib    #lib文件位置</span><br></pre></td></tr></table></figure>
+
+<p>重新进行打包</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd  ~/sparkapp2</span><br><span class="line">mvn package</span><br></pre></td></tr></table></figure>
+
+<p>成功</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[INFO] Building jar: /home/hadoop/sparkapp2/target/simple-project-1.0.jar</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] BUILD SUCCESS</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br><span class="line">[INFO] Total time:  01:10 min</span><br><span class="line">[INFO] Finished at: 2021-04-02T14:01:49+08:00</span><br><span class="line">[INFO] ------------------------------------------------------------------------</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+  <div class="post-footer">the end</div>
+</article>
+
+          
+  <nav class="pagination post-nav">
+    
+    
+      <a href="/2021/03/31/安装双系统以及ssr总结/">
+        <span class="next-post">安装双系统以及ssr总结<i class="iconfont icon-more"></i></span>
+      </a>
+    
+  </nav>
+
+
+          
+  
+
+
+      </main>
+    </div>
+    <footer>
+      <div class="social-links">
+        
+          
+        
+          
+        
+          
+            <a href="https://github.com/HaoYuLiuGH"><i class="iconfont icon-github"></i></a>
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+      
+        <div class="quote">
+          <p>命运如织，当如磐石</p>
+        </div>
+      
+      <div class="copyright">
+        <p>
+          由 <a href="https://hexo.io/">Hexo</a> 强力驱动
+          <span>|</span>
+          主题 ztopic
+        </p>
+        <p>
+          <span>
+          
+          &copy;
+          
+            2021
+          
+          </span>
+          <i class="iconfont icon-circle"></i>
+          <span>CleFke</span>
+        </p>
+      </div>
+</footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  <div id="mobile-nav">
+  <nav id="mobile-nav-menu">
+    
+      <a href="/" class="mobile-nav-link"><i class="iconfont icon-home"></i>首页</a>
+    
+      <a href="/archives" class="mobile-nav-link"><i class="iconfont icon-archive"></i>归档</a>
+    
+      <a href="/categories" class="mobile-nav-link"><i class="iconfont icon-category"></i>分类</a>
+    
+      <a href="/tags" class="mobile-nav-link"><i class="iconfont icon-tags"></i>标签</a>
+    
+      <a href="/about" class="mobile-nav-link"><i class="iconfont icon-about"></i>关于</a>
+    
+    <div class="mobile-intro"><i class="iconfont icon-pen"></i></div>
+  </nav>
+</div>
+
+
+  <script src="/libs/jQuery/jquery-3.2.1.min.js"></script>
+  <script src="/libs/slideout/slideout.min.js"></script>
+  
+    <link rel="stylesheet" href="/libs/fancybox/jquery.fancybox.css">
+    <script src="/libs/fancybox/jquery.fancybox.pack.js"></script>
+  
+  
+
+  <script src="/js/ztopic.js"></script>
+</body>
+</html>
