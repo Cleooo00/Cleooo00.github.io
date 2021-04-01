@@ -158,7 +158,7 @@
 
 <p>添加镜像的时候有个坑，它的xml文件里面是有mirrors目录的，参照了这篇<a href="http://www.360doc.com/content/20/0219/13/63557093_893137651.shtml" target="_blank" rel="noopener">博客</a>,最后解决</p>
 <p>ps 使用apt-get install 指令是时，下载的文件有如下路径：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/share  #文件的位置，其中conf配置文件也有可能在/share的此软件目录下，例如上述               maven配置文件在/usr/share/maven/conf下</span><br><span class="line">/usr/bin    #可执行文件位置</span><br><span class="line">/etc        #配置文件位置</span><br><span class="line">/usr/lib    #lib文件位置</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">/usr/share  #文件的位置，其中conf配置文件也有可能在/share的此软件目录下，例如上述maven配置文件在/usr/share/maven/conf下</span><br><span class="line">/usr/bin    #可执行文件位置</span><br><span class="line">/etc        #配置文件位置</span><br><span class="line">/usr/lib    #lib文件位置</span><br></pre></td></tr></table></figure>
 
 <p>重新进行打包</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd  ~/sparkapp2</span><br><span class="line">mvn package</span><br></pre></td></tr></table></figure>
